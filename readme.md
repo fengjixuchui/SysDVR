@@ -2,8 +2,7 @@
 [![Discord](https://img.shields.io/discord/643436008452521984.svg?logo=discord&logoColor=white&label=Discord&color=7289DA
 )](https://discord.gg/rqU5Tf8)
 [![Latest release](https://img.shields.io/github/v/release/exelix11/SysDVR)](https://github.com/exelix11/SysDVR/releases)
-[![](https://img.shields.io/github/downloads/exelix11/SysDVR/total)](https://github.com/exelix11/SysDVR/releases)
-[![Contributing](https://img.shields.io/badge/supporting-patreon-f96854)](https://www.patreon.com/exelix11)
+[![Download](https://img.shields.io/github/downloads/exelix11/SysDVR/total)](https://github.com/exelix11/SysDVR/releases)
 
 This is an experimental sysmodule that allows capturing the running game output to a pc via USB or network connection.
 
@@ -20,9 +19,6 @@ This is an experimental sysmodule that allows capturing the running game output 
 - Requires at least firmware 6.0.0
 
 Clearly with these limitations **this sysmodule doesn't allow "remote play" and does not fully replace a capture card**.
-
-## Supporting the project
-If you like my work consider supporting me on [patreon](https://www.patreon.com/exelix11)
 
 # Usage
 This guide is for SysDVR V3 only, if you want to use an older version refer to the [previous version of the guide](https://github.com/exelix11/SysDVR/blob/7497d0961c194af0412e7c4338de8706c93c5fad/readme.md) 
