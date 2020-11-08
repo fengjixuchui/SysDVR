@@ -1,4 +1,6 @@
-﻿using System;
+﻿// #define EXCEPTION_DEBUG
+
+using System;
 using System.Buffers;
 using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
@@ -102,8 +104,8 @@ namespace SysDVRClient
 
 			Source.Logging = log;
 			Source.UseCancellationToken(token);
-			
-#if RELEASE
+
+#if !EXCEPTION_DEBUG || RELEASE
 			try
 			{
 #endif
@@ -147,6 +149,7 @@ namespace SysDVRClient
 					if (!Source.ReadPayload(Data, Header.DataSize))
 					{
 						Source.Flush();
+						pool.Return(Data);
 						System.Threading.Thread.Sleep(10);
 						continue;
 					}
@@ -159,7 +162,7 @@ namespace SysDVRClient
 
 			void SendToClient() 
 			{
-				foreach (var o in queue.GetConsumingEnumerable(token))
+				foreach (var o  in queue.GetConsumingEnumerable(token))
 				{
 					var (ts, data) = o;
 
@@ -168,8 +171,8 @@ namespace SysDVRClient
 				}
 			}
 
-			Parallel.Invoke(ReceiveFromDevice, SendToClient);
-#if RELEASE
+			Parallel.Invoke(new ParallelOptions() { CancellationToken = token, MaxDegreeOfParallelism = 2 }, ReceiveFromDevice, SendToClient);
+#if !EXCEPTION_DEBUG || RELEASE
 			}
 			catch (Exception ex)
 			{
